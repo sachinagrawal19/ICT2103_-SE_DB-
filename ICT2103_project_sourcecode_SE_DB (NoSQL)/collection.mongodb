@@ -1,0 +1,12 @@
+const database = 'project2103';
+const collection1 = 'vaccination';
+const collection2 = 'cases';
+const collection3 = 'icu';
+const collection4 = 'hospitalization';
+// const collection5 = 'implication';
+
+use(database);
+db.createCollection(collection1);
+db.createCollection(collection2);
+db.createCollection(collection3);
+db.createCollection(collection4);

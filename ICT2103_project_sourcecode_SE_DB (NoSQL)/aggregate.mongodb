@@ -1,0 +1,34 @@
+const database = 'project2103';
+const collection1 = 'vaccination';
+const collection2 = 'cases';
+const collection3 = 'icu';
+const collection4 = 'hospitalization';
+// const collection5 = 'implication';
+
+use(database);
+
+db.vaccination.aggregate([
+    {
+        $lookup: {
+           from: "cases",
+           localField: "date",
+           foreignField: "date",
+           as: "case_date"
+        }
+    },
+    {
+        $unwind: "$case_date"
+    },
+    {
+        $lookup: {
+            from: "icu",
+            localField: "date",
+            foreignField: "date",
+            as: "icu_date"
+        }
+    },
+    {
+        $unwind: "$icu_date"
+    },
+]);
+
